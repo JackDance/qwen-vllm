@@ -12,6 +12,6 @@ WORKDIR qwen_vllm
 
 COPY . /qwen_vllm
 
-RUN pip install requirements.txt
+RUN pip install -r requirements.txt
 
 CMD ["python", "vllm_server-deloitte.py"]
