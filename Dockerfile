@@ -10,8 +10,10 @@ RUN apt-get update && \
 
 WORKDIR qwen_vllm
 
-COPY . /qwen_vllm
+COPY . .
 
 RUN pip install -r requirements.txt
+
+EXPOSE 6006
 
 CMD ["python", "vllm_server-deloitte.py"]
