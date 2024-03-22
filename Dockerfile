@@ -14,7 +14,7 @@ COPY . .
 
 RUN pip install --upgrade pip
 
-RUN pip install -r requirements.txt
+RUN pip install -r requirements.txt -i https://developer.aliyun.com/mirror/
 
 EXPOSE 6006
 
