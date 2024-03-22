@@ -41,7 +41,7 @@ def _build_prompt(
     query_text=f"\n{im_start}{query_text_part}{im_end}\n{im_start}assistant\n"
     left_token_space-=len(query_tokens)
     
-    # prompt腰部: 历史user+assitant对话
+    # prompt腰部: 历史user+assistant对话
     history_text,history_tokens='',[]
     for hist_query,hist_response in reversed(history):    # 优先采用最近的对话历史
         hist_query_text,hist_query_tokens_part=_tokenize_str("user",hist_query) # user\n历史提问
