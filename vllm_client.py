@@ -12,7 +12,7 @@ while True:
 
     # 调用api_server
     response=requests.post(
-        url='http://localhost:6006/chat', json={
+        url='http://localhost:8000/chat', json={
             'query': query,
             'stream': True,
             'history': history,
