@@ -18,7 +18,7 @@ app=FastAPI()
 # model_dir="/root/autodl-tmp/qwen-pretrained_model/Qwen/Qwen-1_8B-Chat"
 model_dir="qwen/Qwen-7B-Chat"
 tensor_parallel_size=1 # GPU的数量
-gpu_memory_utilization=0.9 # 允许vllm最多占用显卡的90%的显存
+gpu_memory_utilization=0.95 # 允许vllm最多占用显卡的90%的显存
 # quantization='gptq' # 量化方法
 dtype='float16' # 不能量化的部分使用float16（单精度浮点数）
 
@@ -128,5 +128,5 @@ if __name__=='__main__':
 
     uvicorn.run(app,
                 host="0.0.0.0",
-                port=6006,
+                port=8000,
                 log_level="debug")
