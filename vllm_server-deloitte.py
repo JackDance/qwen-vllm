@@ -19,7 +19,7 @@ app=FastAPI()
 model_dir="qwen/Qwen-7B-Chat"
 tensor_parallel_size=1 # GPU的数量
 gpu_memory_utilization=0.9 # 允许vllm最多占用显卡的90%的显存
-quantization='gptq' # 量化方法
+# quantization='gptq' # 量化方法
 dtype='float16' # 不能量化的部分使用float16（单精度浮点数）
 
 # vLLM模型加载
@@ -41,7 +41,7 @@ def load_vllm():
     args.tokenizer=model_dir
     args.tensor_parallel_size=tensor_parallel_size
     args.trust_remote_code=True
-    args.quantization=quantization
+    # args.quantization=quantization
     args.gpu_memory_utilization=gpu_memory_utilization
     args.dtype=dtype
     args.max_num_seqs=20    # batch最大20条样本
