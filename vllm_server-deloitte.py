@@ -17,10 +17,10 @@ app=FastAPI()
 # model_dir="/root/autodl-tmp/qwen-pretrained_model/qwen/Qwen-7B-Chat"
 # model_dir="/root/autodl-tmp/qwen-pretrained_model/Qwen/Qwen-1_8B-Chat"
 # model_dir="qwen/Qwen-7B-Chat"
-model_dir="qwen/Qwen-7B-Chat-Int4"
+model_dir="Qwen/Qwen-1_8B-Chat"
 tensor_parallel_size=1 # GPU的数量
 gpu_memory_utilization=0.9 # 允许vllm最多占用显卡的90%的显存
-quantization='awq' # 量化方法
+# quantization='gptq' # 量化方法
 dtype='float16' # 不能量化的部分使用float16（单精度浮点数）
 
 # vLLM模型加载
@@ -29,9 +29,9 @@ def load_vllm():
     # 模型下载
     # snapshot_download(model_dir)
     # 模型基础配置
-    generation_config=GenerationConfig.from_pretrained(model_dir,trust_remote_code=True)
+    generation_config=GenerationConfig.from_pretrained(model_dir, revision='master', trust_remote_code=True)
     # 加载分词器
-    tokenizer=AutoTokenizer.from_pretrained(model_dir,trust_remote_code=True)
+    tokenizer=AutoTokenizer.from_pretrained(model_dir, revision='master', trust_remote_code=True)
     tokenizer.eos_token_id=generation_config.eos_token_id
     # 推理终止词
     stop_words_ids=[tokenizer.im_start_id,tokenizer.im_end_id,tokenizer.eos_token_id]
@@ -42,7 +42,7 @@ def load_vllm():
     args.tokenizer=model_dir
     args.tensor_parallel_size=tensor_parallel_size
     args.trust_remote_code=True
-    args.quantization=quantization
+    # args.quantization=quantization
     args.gpu_memory_utilization=gpu_memory_utilization
     args.dtype=dtype
     args.max_num_seqs=20    # batch最大20条样本
