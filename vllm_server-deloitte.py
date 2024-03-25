@@ -62,6 +62,10 @@ def match_user_stop_words(response_token_ids,user_stop_tokens):
             return True  # 命中停止句, 返回True
     return False
 
+@app.get("/health")
+def check_health():
+    return Response(content="healthy", status_code=200)
+
 # chat对话接口
 @app.post("/chat")
 async def chat(request: Request):
