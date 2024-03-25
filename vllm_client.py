@@ -47,7 +47,7 @@ history=[]
 while True:
     query=input('问题:')
     response = requests.post(
-        url='http://43.192.28.170:8000/chat', json={
+        url='http://localhost:8000/chat', json={
             'query': query,
             'stream': False,
             'history': history,
